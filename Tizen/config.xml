@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="https://bookify.co.za/smallr" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="W4yVWYtKiU.Smallr" package="W4yVWYtKiU" required_version="5.0"/>
+    <author href="http://designdesk.ml" email="james_baloyi@yahoo.com">James Baloyi</author>
+    <content src="index.html"/>
+    <description>Smallr compresses images of all formats. Select the images you want to compress, and free up valuable space</description>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="smallr-logo.png"/>
+    <license href="https://bookify.co.za/licence.html">Smallr Licence</license>
+    <name>Smallr</name>
+    <tizen:profile name="mobile"/>
+    <tizen:setting context-menu="disable"/>
+</widget>

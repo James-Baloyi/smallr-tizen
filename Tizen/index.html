@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width,user-scalable=no"/>
+	<link rel="stylesheet" href="lib/tau/mobile/theme/default/tau.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<title>Smallr</title>
+</head>
+
+<style>
+#upload{
+width: 100%;
+border: 0px;
+background: #fff;
+color: #0073cb;
+border-radius: 0px;
+height: 50px;
+bottom: 0px;
+left: 0%;
+font-size: 1em;
+font-weight: 600;
+position: fixed;
+}
+#hidden{
+width: 0px;
+height: 0px;
+opacity: 0;
+margin-top: -10px;
+}
+fieldset[id='cf']{
+width: 90%;
+height: 40px;
+padding: 0px;
+padding-top: 10px;
+margin: 0px;
+background: #fff;
+border: 0px;
+border-radius: 20px;
+text-align: center;
+color: #777;
+font-size: 1em;
+margin-left: 5%;
+margin-top: -10px;
+}
+#file-display{
+width: 90%;
+margin-left: 5%;
+height: 400px;
+background: #fff;
+border-radius: 20px;
+margin-top: 20px;
+text-align: center;
+opacity: .8;
+overflow-y: auto;
+}
+</style>
+<body>
+<div id='one' class='ui-page'>
+
+<h2 style='text-align: center; margin-top: 15px;'>Smallr</h2>
+<form action='' onsubmit='event.preventDefault()' enctype='multipart/form-data'>
+
+<input type='file' id='hidden' accept='image/*' onchange='processThis()' multiple='false'>
+<label for='hidden'>
+<fieldset id='cf'>
+<small id='cf-text'>+ Choose Files</small>
+</fieldset>
+</label>
+
+<div id='file-display'>
+<br><br><br>
+<small id='quick-info' style='color: #777; font-size: .8em'>You haven't chosen any images...</small>
+
+
+<!-- Display Chosen Files -->
+
+</div>
+
+<button id='upload' class='off'>Make Smallr</button>
+</form>
+
+</div>
+
+
+<div id='two' class='ui-page'>
+<h2>Two</h2>
+
+<button id='next' class='ui-button' onclick='location.href=`#one`'>
+Next
+</button>
+
+</div>
+
+
+<div id='three' class='ui-page'>
+
+
+</div>
+
+<script type="text/javascript" src="lib/tau/mobile/js/tau.js"></script>
+<script src="js/main.js"></script>
+<script>
+function processThis(){
+  var fdisp = document.querySelector('#file-display');
+  fdisp.innerHTML = '';
+  
+  var max = document.querySelector('#hidden').files.length;
+  var x;
+  for(x=0; x < max; x++){
+  
+  var img = document.querySelector('#hidden').files;
+  var fd = new FormData();
+  fd.append('upload', img[x]);
+  console.log(img[x])
+  //document.querySelector('#file-display').innerHTML = `${img.type}`;
+  var xhr = new XMLHttpRequest();
+  var url = 'https://applss.co.za/bc/new-index.php';
+  xhr.open('POST', url, true);
+  xhr.onreadystatechange = (event) => {
+    if(xhr.readyState == 4 && xhr.status == 200){
+      var resp = xhr.responseText;
+      console.log(resp);
+      fdisp.innerHTML += `<br><img src='${resp}' width='100%'>`;
+    }else{
+      console.error(`Error: ${xhr.readyState} ${xhr.status}`);
+    }
+  }
+  xhr.send(fd);
+  }
+  return;
+}
+</script>
+</body>
+</html>
